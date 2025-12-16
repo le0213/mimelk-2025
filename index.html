@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nspace Christmas Party Invitation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a472a 0%, #2d5a3f 50%, #1a472a 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .invitation-card {
+            background: linear-gradient(180deg, #fff9f0 0%, #fff 100%);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .invitation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: repeating-linear-gradient(
+                90deg,
+                #c41e3a 0px,
+                #c41e3a 20px,
+                #fff 20px,
+                #fff 40px
+            );
+        }
+
+        .snowflakes {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            opacity: 0.3;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .concept-image {
+            width: 100%;
+            max-width: 280px;
+            height: auto;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border: 4px solid #fff;
+        }
+
+        h1 {
+            color: #c41e3a;
+            font-size: 28px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            color: #2d5a3f;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .target-audience {
+            display: inline-block;
+            background: linear-gradient(135deg, #c41e3a, #a01830);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-top: 12px;
+            font-weight: 500;
+        }
+
+        .details {
+            background: #f8f4f0;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            border-left: 4px solid #c41e3a;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .detail-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .detail-icon {
+            font-size: 20px;
+            margin-right: 12px;
+            width: 30px;
+            text-align: center;
+        }
+
+        .detail-text {
+            font-size: 15px;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #2d5a3f;
+        }
+
+        .survey-section {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 2px dashed #ddd;
+        }
+
+        .survey-title {
+            color: #2d5a3f;
+            font-size: 18px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #333;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #2d5a3f;
+        }
+
+        .time-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .time-option {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            background: #fff;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .time-option:hover {
+            border-color: #2d5a3f;
+            background: #f0f7f2;
+        }
+
+        .time-option input[type="radio"] {
+            margin-right: 12px;
+            accent-color: #2d5a3f;
+            width: 18px;
+            height: 18px;
+        }
+
+        .time-option.selected {
+            border-color: #2d5a3f;
+            background: #e8f5e9;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #c41e3a 0%, #a01830 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(196, 30, 58, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .success-message {
+            display: none;
+            background: #e8f5e9;
+            color: #2d5a3f;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+            font-weight: 500;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .responses-section {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .responses-title {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .response-list {
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .response-item {
+            background: #f5f5f5;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: #555;
+        }
+
+        .response-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .no-responses {
+            color: #999;
+            font-size: 13px;
+            font-style: italic;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            color: #888;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="invitation-card">
+        <div class="snowflakes">❄️ ❄️ ❄️</div>
+
+        <div class="header">
+            <img src="snowman.jpeg" alt="Christmas Snowman" class="concept-image">
+            <h1>돌아온 미멜크 2025</h1>
+            <p class="subtitle">함께하는 따뜻한 연말 파티에 초대합니다</p>
+            <span class="target-audience">앤스페이스 임직원</span>
+        </div>
+
+        <div class="details">
+            <div class="detail-item">
+                <span class="detail-icon">📅</span>
+                <span class="detail-text">
+                    <span class="detail-label">날짜:</span> 2025년 12월 24일 (수)
+                </span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-icon">🕕</span>
+                <span class="detail-text">
+                    <span class="detail-label">시간:</span> 오후 6시 ~ 오후 10시
+                </span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-icon">📍</span>
+                <span class="detail-text">
+                    <span class="detail-label">장소:</span> 하이디라오 영등포점
+                </span>
+            </div>
+        </div>
+
+        <div class="survey-section">
+            <h2 class="survey-title">📝 참석 시간 선택</h2>
+
+            <form id="rsvpForm">
+                <div class="form-group">
+                    <label for="name">이름</label>
+                    <input type="text" id="name" placeholder="이름을 입력해주세요" required>
+                </div>
+
+                <div class="form-group">
+                    <label>도착 예정 시간</label>
+                    <div class="time-options">
+                        <label class="time-option">
+                            <input type="radio" name="time" value="18:00" required>
+                            18:00 (오후 6시)
+                        </label>
+                        <label class="time-option">
+                            <input type="radio" name="time" value="19:00">
+                            19:00 (오후 7시)
+                        </label>
+                        <label class="time-option">
+                            <input type="radio" name="time" value="20:00">
+                            20:00 (오후 8시)
+                        </label>
+                        <label class="time-option">
+                            <input type="radio" name="time" value="21:00">
+                            21:00 (오후 9시)
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">✨ 응답 제출하기</button>
+            </form>
+
+            <div class="success-message" id="successMessage">
+                🎉 응답이 저장되었습니다! 파티에서 만나요!
+            </div>
+
+        </div>
+
+        <div class="footer">
+            Made with ❤️ for Nspace Christmas 2025
+        </div>
+    </div>
+
+    <script>
+        // 구글 스프레드시트 웹 앱 URL
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwKdlTjZcVdgYNB7IYI7XDIXKd07cTTY8XfuYgJF3O_nQod34B9NreAJdZaINLhBxZF/exec';
+
+        // 페이지 로드 시 초기화
+        document.addEventListener('DOMContentLoaded', () => {
+            highlightSelectedOption();
+        });
+
+        // 라디오 버튼 선택 시 스타일 변경
+        function highlightSelectedOption() {
+            const timeOptions = document.querySelectorAll('.time-option');
+            timeOptions.forEach(option => {
+                const radio = option.querySelector('input[type="radio"]');
+                radio.addEventListener('change', () => {
+                    timeOptions.forEach(opt => opt.classList.remove('selected'));
+                    if (radio.checked) {
+                        option.classList.add('selected');
+                    }
+                });
+            });
+        }
+
+        // 폼 제출 처리
+        document.getElementById('rsvpForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value.trim();
+            const time = document.querySelector('input[name="time"]:checked')?.value;
+
+            if (!name || !time) {
+                alert('이름과 참석 시간을 모두 선택해주세요.');
+                return;
+            }
+
+            // 제출 버튼 비활성화 (중복 제출 방지)
+            const submitBtn = document.querySelector('.submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = '저장 중...';
+
+            try {
+                // 구글 스프레드시트에 저장
+                await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name, time })
+                });
+
+                // 성공 메시지 표시
+                document.getElementById('successMessage').classList.add('show');
+
+                // 폼 초기화
+                document.getElementById('rsvpForm').reset();
+                document.querySelectorAll('.time-option').forEach(opt => opt.classList.remove('selected'));
+
+                // 3초 후 성공 메시지 숨김
+                setTimeout(() => {
+                    document.getElementById('successMessage').classList.remove('show');
+                }, 3000);
+
+            } catch (error) {
+                alert('저장 중 오류가 발생했습니다. 다시 시도해주세요.');
+                console.error('Error:', error);
+            } finally {
+                // 제출 버튼 다시 활성화
+                submitBtn.disabled = false;
+                submitBtn.textContent = '✨ 응답 제출하기';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -8,7 +8,12 @@
       "Bash(cat:*)",
       "Bash(git init:*)",
       "Bash(git add:*)",
-      "Bash(git commit -m \"$(cat <<''EOF''\nInitial commit: 돌아온 미멜크 2025 초대장\n\n- 크리스마스 파티 초대장 페이지\n- 구글 스프레드시트 연동\n- 관리자 페이지\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n)\")"
+      "Bash(git commit -m \"$(cat <<''EOF''\nInitial commit: 돌아온 미멜크 2025 초대장\n\n- 크리스마스 파티 초대장 페이지\n- 구글 스프레드시트 연동\n- 관리자 페이지\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(gh repo create:*)",
+      "Bash(vercel --yes:*)",
+      "Bash(vercel git connect:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ]
   }
 }
