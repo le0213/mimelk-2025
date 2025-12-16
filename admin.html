@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>돌아온 미멜크 2025 - Admin</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a472a 0%, #2d5a3f 50%, #1a472a 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .admin-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .admin-header {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .admin-header h1 {
+            color: #c41e3a;
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .admin-header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            color: #2d5a3f;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        .responses-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .responses-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .responses-header h2 {
+            color: #333;
+            font-size: 18px;
+        }
+
+        .clear-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: background 0.3s;
+        }
+
+        .clear-btn:hover {
+            background: #c82333;
+        }
+
+        .response-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .response-table th,
+        .response-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .response-table th {
+            background: #f8f9fa;
+            color: #333;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .response-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .response-table td {
+            color: #555;
+            font-size: 14px;
+        }
+
+        .time-badge {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #2d5a3f;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+
+        .no-data-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .refresh-btn {
+            background: #2d5a3f;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            margin-right: 10px;
+            transition: background 0.3s;
+        }
+
+        .refresh-btn:hover {
+            background: #1a472a;
+        }
+
+        .time-summary {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .time-summary-item {
+            background: #f8f4f0;
+            border-radius: 8px;
+            padding: 12px 18px;
+            text-align: center;
+            flex: 1;
+            min-width: 100px;
+        }
+
+        .time-summary-item .time {
+            font-weight: 600;
+            color: #2d5a3f;
+            font-size: 14px;
+        }
+
+        .time-summary-item .count {
+            font-size: 24px;
+            font-weight: bold;
+            color: #c41e3a;
+            margin-top: 5px;
+        }
+
+        .delete-btn {
+            background: none;
+            border: none;
+            color: #dc3545;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+
+        .delete-btn:hover {
+            background: #fee;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .back-link:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1>돌아온 미멜크 2025 - 관리자</h1>
+            <p>참석 응답 현황을 확인하세요</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" id="totalCount">0</div>
+                <div class="stat-label">총 응답</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="time18Count">0</div>
+                <div class="stat-label">18:00</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="time19Count">0</div>
+                <div class="stat-label">19:00</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="time20Count">0</div>
+                <div class="stat-label">20:00</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="time21Count">0</div>
+                <div class="stat-label">21:00</div>
+            </div>
+        </div>
+
+        <div class="responses-card">
+            <div class="responses-header">
+                <h2>응답 목록</h2>
+                <div>
+                    <button class="refresh-btn" onclick="loadResponses()">새로고침</button>
+                    <button class="clear-btn" onclick="clearAllResponses()">전체 삭제</button>
+                </div>
+            </div>
+
+            <div id="responseContent">
+                <div class="no-data">
+                    <div class="no-data-icon">📭</div>
+                    <p>아직 응답이 없습니다.</p>
+                </div>
+            </div>
+        </div>
+
+        <a href="christmas-invitation.html" class="back-link">← 초대장으로 돌아가기</a>
+    </div>
+
+    <script>
+        const STORAGE_KEY = 'nspace_christmas_party_2025';
+
+        document.addEventListener('DOMContentLoaded', loadResponses);
+
+        function getResponses() {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            return stored ? JSON.parse(stored) : [];
+        }
+
+        function loadResponses() {
+            const responses = getResponses();
+            updateStats(responses);
+            renderTable(responses);
+        }
+
+        function updateStats(responses) {
+            document.getElementById('totalCount').textContent = responses.length;
+
+            const timeCounts = {
+                '18:00': 0,
+                '19:00': 0,
+                '20:00': 0,
+                '21:00': 0
+            };
+
+            responses.forEach(r => {
+                if (timeCounts.hasOwnProperty(r.time)) {
+                    timeCounts[r.time]++;
+                }
+            });
+
+            document.getElementById('time18Count').textContent = timeCounts['18:00'];
+            document.getElementById('time19Count').textContent = timeCounts['19:00'];
+            document.getElementById('time20Count').textContent = timeCounts['20:00'];
+            document.getElementById('time21Count').textContent = timeCounts['21:00'];
+        }
+
+        function renderTable(responses) {
+            const container = document.getElementById('responseContent');
+
+            if (responses.length === 0) {
+                container.innerHTML = `
+                    <div class="no-data">
+                        <div class="no-data-icon">📭</div>
+                        <p>아직 응답이 없습니다.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const tableHTML = `
+                <table class="response-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>이름</th>
+                            <th>도착 시간</th>
+                            <th>응답 일시</th>
+                            <th>삭제</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${responses.map((r, index) => `
+                            <tr>
+                                <td>${index + 1}</td>
+                                <td><strong>${escapeHtml(r.name)}</strong></td>
+                                <td><span class="time-badge">${escapeHtml(r.time)}</span></td>
+                                <td>${r.timestamp}</td>
+                                <td><button class="delete-btn" onclick="deleteResponse(${r.id})">🗑️</button></td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+
+            container.innerHTML = tableHTML;
+        }
+
+        function deleteResponse(id) {
+            if (!confirm('이 응답을 삭제하시겠습니까?')) return;
+
+            const responses = getResponses();
+            const filtered = responses.filter(r => r.id !== id);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(filtered));
+            loadResponses();
+        }
+
+        function clearAllResponses() {
+            if (!confirm('모든 응답을 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.')) return;
+
+            localStorage.removeItem(STORAGE_KEY);
+            loadResponses();
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
+</body>
+</html>
